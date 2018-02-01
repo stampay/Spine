@@ -17,3 +17,4 @@ DerivedData
 *.xcuserstate
 
 Carthage/Checkouts
+.DS_Store
