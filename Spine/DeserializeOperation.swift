@@ -35,8 +35,12 @@ class DeserializeOperation: Operation {
 	
 	// MARK: -
 	
-	init(data: Data, resourceFactory: ResourceFactory, valueFormatters: ValueFormatterRegistry, keyFormatter: KeyFormatter) {
-		self.data = JSON(data: data)
+    init(data: Data, resourceFactory: ResourceFactory, valueFormatters: ValueFormatterRegistry, keyFormatter: KeyFormatter) {
+        if let json = try? JSON(data: data) {
+            self.data = json
+        } else {
+            self.data = JSON.null
+        }
 		self.resourceFactory = resourceFactory
 		self.valueFormatters = valueFormatters
 		self.keyFormatter = keyFormatter
